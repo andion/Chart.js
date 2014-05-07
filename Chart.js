@@ -199,7 +199,7 @@ window.Chart = function(context){
 	};
 
 	this.Radar = function(data,options){
-	
+
 		chart.Radar.defaults = {
 			scaleOverlay : false,
 			scaleOverride : false,
@@ -496,7 +496,7 @@ window.Chart = function(context){
 		
 		calculateDrawingSizes();
 
-		var valueBounds = getValueBounds();
+		var valueBounds = getValueBounds(config);
 
 		labelTemplateString = (config.scaleShowLabels)? config.scaleLabel : null;
 
@@ -667,7 +667,8 @@ window.Chart = function(context){
 			//If the label height is less than 5, set it to 5 so we don't have lines on top of each other.
 			labelHeight = Default(labelHeight,5);
 		};
-		function getValueBounds() {
+
+		function getValueBounds(config) {
 			var upperValue = Number.MIN_VALUE;
 			var lowerValue = Number.MAX_VALUE;
 			
@@ -682,8 +683,8 @@ window.Chart = function(context){
 			var minSteps = Math.floor((scaleHeight / labelHeight*0.5));
 			
 			return {
-				maxValue : upperValue,
-				minValue : lowerValue,
+				maxValue : (config.maxValue) ? config.maxValue : upperValue,
+				minValue : (config.minValue) ? config.maxValue : lowerValue,
 				maxSteps : maxSteps,
 				minSteps : minSteps
 			};
