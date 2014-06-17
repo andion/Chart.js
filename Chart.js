@@ -684,12 +684,10 @@ window.Chart = function(context){
 			
 			return {
 				maxValue : (config.maxValue) ? config.maxValue : upperValue,
-				minValue : (config.minValue) ? config.maxValue : lowerValue,
+				minValue : (config.minValue || config.minValue === 0) ? config.minValue : lowerValue,
 				maxSteps : maxSteps,
 				minSteps : minSteps
 			};
-			
-
 		}
 	}
 
